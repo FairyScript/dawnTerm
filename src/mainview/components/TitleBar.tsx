@@ -34,8 +34,19 @@ export function TitleBar({ title }: TitleBarProps) {
     electrobun.rpc?.send.maximizeWindow();
   }
 
+  const handleMouseDown = (e: React.MouseEvent) => {
+    electrobun.rpc?.send.startWindowDrag({ 
+      mouseX: e.screenX, 
+      mouseY: e.screenY 
+    });
+  }
+
   return (
-    <div className="titlebar electrobun-webkit-app-region-drag" onDoubleClick={handleDoubleClick}>
+    <div 
+      className="titlebar electrobun-webkit-app-region-drag" 
+      onDoubleClick={handleDoubleClick}
+      onMouseDown={handleMouseDown}
+    >
       <div className="titlebar-drag">
         <span className="titlebar-title">{title}</span>
       </div>

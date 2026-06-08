@@ -7,6 +7,7 @@ export type WindowRPCType = {
       closeWindow: undefined;
       minimizeWindow: undefined;
       maximizeWindow: undefined;
+      startWindowDrag: { mouseX: number; mouseY: number };
     };
   }>;
   webview: RPCSchema<{

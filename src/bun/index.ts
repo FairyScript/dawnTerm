@@ -39,6 +39,28 @@ const windowRPC = BrowserView.defineRPC<WindowRPCType>({
 					mainWindow?.maximize();
 				}
 			},
+			startWindowDrag: ({ mouseX, mouseY }: { mouseX: number; mouseY: number }) => {
+				if (mainWindow?.isMaximized()) {
+					// 获取当前窗口尺寸（最大化后的尺寸）
+					const currentFrame = mainWindow.getFrame();
+					// 恢复后的宽度和高度（使用初始配置的尺寸）
+					const restoredWidth = 900;
+					const restoredHeight = 700;
+					
+					// 计算鼠标在标题栏的相对位置（假设标题栏高度 32px）
+					// 鼠标相对于窗口左边的偏移
+					const relativeX = mouseX - currentFrame.x;
+					// 计算鼠标在标题栏中的相对位置比例
+					const ratioX = relativeX / currentFrame.width;
+					
+					// 计算新窗口位置，使鼠标在恢复后的窗口中保持相同相对位置
+					const newX = Math.round(mouseX - restoredWidth * ratioX);
+					const newY = Math.round(mouseY - 16); // 标题栏高度约 32px，鼠标在中间
+					
+					mainWindow.unmaximize();
+					mainWindow.setFrame(newX, newY, restoredWidth, restoredHeight);
+				}
+			},
 		},
 	},
 });
@@ -56,12 +78,6 @@ mainWindow = new BrowserWindow({
 	},
 	titleBarStyle: "hiddenInset",
 	rpc: windowRPC,
-});
-
-mainWindow.on("move", () => {
-	if (mainWindow?.isMaximized()) {
-		mainWindow.unmaximize();
-	}
 });
 
 console.log("Tailwind Vanilla app started!");
