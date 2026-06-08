@@ -6,6 +6,7 @@ import { SettingsPanel } from './components/panels/SettingsPanel'
 import { AboutPanel } from './components/panels/AboutPanel'
 import { useRef, useState } from 'react'
 import { PanelLeft, PanelBottom, PanelRight } from 'lucide-react'
+import { LayoutStorage } from './utils/LayoutStorage'
 
 const MyPanel = (props: IDockviewPanelProps) => {
   return <div style={{ padding: 16 }}>{props.api.title}</div>
@@ -25,18 +26,28 @@ function App() {
     right: true,
   })
 
-  const onReady = (event: DockviewReadyEvent) => {
+  const onReady = async (event: DockviewReadyEvent) => {
     apiRef.current = event.api
-    event.api.addPanel({ id: 'panel_1', component: 'default', title: 'Panel 1' })
-    event.api.addPanel({
-      id: 'panel_2',
-      component: 'default',
-      title: 'Panel 2',
-      position: { referencePanel: 'panel_1', direction: 'right' },
+
+    const savedLayout = await LayoutStorage.load()
+    if (savedLayout) {
+      event.api.fromJSON(savedLayout)
+    } else {
+      event.api.addPanel({ id: 'panel_1', component: 'default', title: 'Panel 1' })
+      event.api.addPanel({
+        id: 'panel_2',
+        component: 'default',
+        title: 'Panel 2',
+        position: { referencePanel: 'panel_1', direction: 'right' },
+      })
+      event.api.addEdgeGroup('left', { id: 'left-edge', initialSize: 200 })
+      event.api.addEdgeGroup('bottom', { id: 'bottom-edge', initialSize: 150 })
+      event.api.addEdgeGroup('right', { id: 'right-edge', initialSize: 200 })
+    }
+
+    event.api.onDidLayoutChange(() => {
+      LayoutStorage.save(event.api.toJSON())
     })
-    event.api.addEdgeGroup('left', { id: 'left-edge', initialSize: 200 })
-    event.api.addEdgeGroup('bottom', { id: 'bottom-edge', initialSize: 150 })
-    event.api.addEdgeGroup('right', { id: 'right-edge', initialSize: 200 })
   }
 
   const handleMenuAction = (action: string) => {

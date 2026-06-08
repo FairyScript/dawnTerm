@@ -2,7 +2,7 @@
 
 > 状态：已初始化
 > 创建日期：2026-06-08
-> 最后更新：2026-06-08（sidebar-panels feature）
+> 最后更新：2026-06-09（dockview-layout-persistence feature）
 
 ## 1. 项目简介
 
@@ -22,6 +22,7 @@ A simple terminal application built with Bun
 | AboutPanel | 关于页面的 dockview 面板组件 |
 | PanelToggle | TitleBar 上控制 edge group 显隐的按钮组 |
 | EdgeGroup | dockview 边缘面板组，支持左/右/底三个位置 |
+| LayoutStorage | dockview 布局持久化模块，负责保存/恢复布局状态到 ~/.config/dawnTerm/layout.json |
 
 ## 3. 子系统 / 模块索引
 
@@ -35,6 +36,7 @@ A simple terminal application built with Bun
 | Dockview | `src/mainview/App.tsx` | 面板布局管理，edge group 创建与显隐控制 |
 | SettingsPanel | `src/mainview/components/panels/SettingsPanel.tsx` | 设置面板（占位） |
 | AboutPanel | `src/mainview/components/panels/AboutPanel.tsx` | 关于面板（占位） |
+| LayoutStorage | `src/mainview/utils/LayoutStorage.ts` | dockview 布局持久化，保存/恢复布局状态 |
 
 ## 4. 关键架构决定
 
