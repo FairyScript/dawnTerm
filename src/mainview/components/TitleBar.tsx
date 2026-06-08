@@ -51,7 +51,7 @@ export function TitleBar({ title }: TitleBarProps) {
         <span className="titlebar-title">{title}</span>
       </div>
       {!isMac && (
-        <div className="titlebar-controls electrobun-webkit-app-region-no-drag pr-4">
+        <div className="titlebar-controls electrobun-webkit-app-region-no-drag">
           <button className="titlebar-button" onClick={handleMinimize}>
             <Minus size={16} />
           </button>
