@@ -1,0 +1,8 @@
+[serve.static]
+plugins = ["bun-plugin-tailwind", "@zomme/bun-plugin-react-compiler"]
+env = "BUN_PUBLIC_*"
+
+[plugins.react-compiler]
+target = "19"              # React version: "17", "18", "19"
+compilationMode = "all"    # "all", "annotation", "infer"
+sourceType = "module"      # "module", "script", "unambiguous"
