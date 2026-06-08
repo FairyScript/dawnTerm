@@ -20,6 +20,8 @@ async function getMainViewUrl(): Promise<string> {
 	return "views://mainview/index.html";
 }
 
+let mainWindow: BrowserWindow | null = null;
+
 const windowRPC = BrowserView.defineRPC<WindowRPCType>({
 	handlers: {
 		requests: {},
@@ -28,10 +30,14 @@ const windowRPC = BrowserView.defineRPC<WindowRPCType>({
 				process.exit(0);
 			},
 			minimizeWindow: () => {
-				// Handled by BrowserWindow
+				mainWindow?.minimize();
 			},
 			maximizeWindow: () => {
-				// Handled by BrowserWindow
+				if (mainWindow?.isMaximized()) {
+					mainWindow.unmaximize();
+				} else {
+					mainWindow?.maximize();
+				}
 			},
 		},
 	},
@@ -39,7 +45,7 @@ const windowRPC = BrowserView.defineRPC<WindowRPCType>({
 
 const url = await getMainViewUrl();
 
-const mainWindow = new BrowserWindow({
+mainWindow = new BrowserWindow({
 	title: "dawn-term",
 	url,
 	frame: {
@@ -50,6 +56,12 @@ const mainWindow = new BrowserWindow({
 	},
 	titleBarStyle: "hiddenInset",
 	rpc: windowRPC,
+});
+
+mainWindow.on("move", () => {
+	if (mainWindow?.isMaximized()) {
+		mainWindow.unmaximize();
+	}
 });
 
 console.log("Tailwind Vanilla app started!");

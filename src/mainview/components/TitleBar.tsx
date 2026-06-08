@@ -30,8 +30,12 @@ export function TitleBar({ title }: TitleBarProps) {
     electrobun.rpc?.send.closeWindow();
   }
 
+  const handleDoubleClick = () => {
+    electrobun.rpc?.send.maximizeWindow();
+  }
+
   return (
-    <div className="titlebar electrobun-webkit-app-region-drag">
+    <div className="titlebar electrobun-webkit-app-region-drag" onDoubleClick={handleDoubleClick}>
       <div className="titlebar-drag">
         <span className="titlebar-title">{title}</span>
       </div>
