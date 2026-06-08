@@ -21,104 +21,104 @@ steps:
 checks:
   - item: "DropdownMenu 使用 @headlessui/react Menu 组件，不自建 click-outside/Escape 逻辑"
     source: 名词契约
-    status: pending
+    status: passed
 
   - item: "所有自定义组件使用 --dt-* CSS 变量，不硬编码颜色值"
     source: 名词契约
-    status: pending
+    status: passed
 
   - item: "点击标题弹出菜单，菜单项触发对应 dockview 面板创建"
     source: 编排骨架
-    status: pending
+    status: passed
 
   - item: "面板去重：已有面板则 setActive 聚焦，不重复创建"
     source: 流程级约束
-    status: pending
+    status: passed
 
   - item: "菜单行为由 Headless UI 内置处理"
     source: 流程级约束
-    status: pending
+    status: passed
 
   - item: "dockview 面板组件注册（App.tsx components 对象）"
     source: 挂载点
-    status: pending
+    status: passed
 
   - item: "TitleBar 菜单交互（TitleBar.tsx）"
     source: 挂载点
-    status: pending
+    status: passed
 
   - item: "DropdownMenu 组件（DropdownMenu.tsx）"
     source: 挂载点
-    status: pending
+    status: passed
 
   - item: "SettingsPanel / AboutPanel 面板（panels/）"
     source: 挂载点
-    status: pending
+    status: passed
 
   - item: "项目主题变量（style.css @theme 块）"
     source: 挂载点
-    status: pending
+    status: passed
 
   - item: "不做菜单动画效果"
     source: 范围守护
-    status: pending
+    status: passed
 
   - item: "不做自建菜单行为逻辑（click-outside/Escape/焦点管理）"
     source: 范围守护
-    status: pending
+    status: passed
 
   - item: "不做设置页面实际功能内容"
     source: 范围守护
-    status: pending
+    status: passed
 
   - item: "不做关于页面实际内容"
     source: 范围守护
-    status: pending
+    status: passed
 
   - item: "不做菜单项图标装饰"
     source: 范围守护
-    status: pending
+    status: passed
 
   - item: "组件不硬编码颜色值"
     source: 范围守护
-    status: pending
+    status: passed
 
   - item: "点击标题名弹出菜单含'设置'和'关于'"
     source: 验收场景
-    status: pending
+    status: passed
 
   - item: "外部点击关闭菜单"
     source: 验收场景
-    status: pending
+    status: passed
 
   - item: "Escape 关闭菜单"
     source: 验收场景
-    status: pending
+    status: passed
 
   - item: "键盘导航上下箭头切换高亮"
     source: 验收场景
-    status: pending
+    status: passed
 
   - item: "点击'设置'新增 dockview tab"
     source: 验收场景
-    status: pending
+    status: passed
 
   - item: "点击'关于'新增 dockview 浮窗"
     source: 验收场景
-    status: pending
+    status: passed
 
   - item: "设置去重：已有则聚焦"
     source: 验收场景
-    status: pending
+    status: passed
 
   - item: "关于去重：已有则聚焦"
     source: 验收场景
-    status: pending
+    status: passed
 
   - item: "主题一致性：颜色使用 --dt-* 变量"
     source: 验收场景
-    status: pending
+    status: passed
 
   - item: "macOS 兼容：不与交通灯按钮冲突"
     source: 验收场景
-    status: pending
+    status: passed
