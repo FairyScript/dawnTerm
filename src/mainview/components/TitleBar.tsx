@@ -67,7 +67,7 @@ export function TitleBar({ title, onMenuAction, panels, onPanelToggle }: TitleBa
       onDoubleClick={handleDoubleClick}
       onMouseDown={handleMouseDown}
     >
-      <div className="titlebar-drag electrobun-webkit-app-region-no-drag">
+      <div className="titlebar-drag">
         <DropdownMenu trigger={title} items={menuItems} onItemClick={handleMenuClick} />
       </div>
       {panels && onPanelToggle && (

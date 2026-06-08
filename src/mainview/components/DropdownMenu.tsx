@@ -14,7 +14,7 @@ interface DropdownMenuProps {
 export function DropdownMenu({ trigger, items, onItemClick }: DropdownMenuProps) {
   return (
     <Menu>
-      <MenuButton as="div" className="titlebar-title-btn">
+      <MenuButton as="div" className="titlebar-title-btn electrobun-webkit-app-region-no-drag">
         {trigger}
       </MenuButton>
       <MenuItems className="dropdown-menu" anchor="bottom start">
