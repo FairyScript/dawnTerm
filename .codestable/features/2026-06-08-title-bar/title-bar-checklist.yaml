@@ -1,0 +1,60 @@
+feature: 2026-06-08-title-bar
+created: 2026-06-08
+
+steps:
+  - action: "静态结构：创建 TitleBar 组件骨架 + 修改窗口配置"
+    exit_signal: "浏览器看到标题栏布局，macOS 显示交通灯按钮"
+    status: done
+
+  - action: "交互逻辑：绑定窗口控制按钮事件"
+    exit_signal: "点击按钮能控制窗口（最小化/最大化/关闭）"
+    status: done
+
+  - action: "跨平台适配：平台判断 + Windows/Linux 自定义按钮"
+    exit_signal: "三个平台都能正常使用窗口控制"
+    status: done
+
+  - action: "样式收尾：标题栏样式调整 + 可拖动区域"
+    exit_signal: "标题栏可拖动，视觉效果符合预期"
+    status: done
+
+checks:
+  - item: "macOS 上显示原生交通灯按钮"
+    source: 验收场景
+    status: passed
+
+  - item: "标题栏显示 'dawn-term'"
+    source: 验收场景
+    status: passed
+
+  - item: "点击关闭按钮能关闭窗口"
+    source: 验收场景
+    status: passed
+
+  - item: "点击最小化按钮能最小化窗口"
+    source: 验收场景
+    status: passed
+
+  - item: "点击最大化按钮能最大化/还原窗口"
+    source: 验收场景
+    status: passed
+
+  - item: "拖动标题栏能移动窗口"
+    source: 验收场景
+    status: passed
+
+  - item: "Windows/Linux 上显示自定义窗口控制按钮"
+    source: 验收场景
+    status: passed
+
+  - item: "代码中不应出现窗口圆角自定义逻辑"
+    source: 范围守护
+    status: passed
+
+  - item: "代码中不应出现标题栏主题切换逻辑"
+    source: 范围守护
+    status: passed
+
+  - item: "代码中不应出现标题栏按钮自定义配置"
+    source: 范围守护
+    status: passed

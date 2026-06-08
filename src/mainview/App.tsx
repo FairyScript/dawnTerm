@@ -1,5 +1,6 @@
 import { DockviewReact, DockviewReadyEvent, IDockviewPanelProps } from 'dockview-react'
 import 'dockview-react/dist/styles/dockview.css'
+import { TitleBar } from './components/TitleBar'
 
 const MyPanel = (props: IDockviewPanelProps) => {
   return <div style={{ padding: 16 }}>{props.api.title}</div>
@@ -19,11 +20,14 @@ function App() {
   }
 
   return (
-    <DockviewReact
-      className="dockview-theme-abyss w-full h-full"
-      onReady={onReady}
-      components={components}
-    />
+    <div className="flex flex-col h-screen">
+      <TitleBar title="dawn-term" />
+      <DockviewReact
+        className="dockview-theme-abyss flex-1"
+        onReady={onReady}
+        components={components}
+      />
+    </div>
   )
 }
 export default App

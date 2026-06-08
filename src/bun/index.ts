@@ -1,4 +1,5 @@
-import { BrowserWindow, Updater } from "electrobun/bun";
+import { BrowserWindow, BrowserView, Updater } from "electrobun/bun";
+import type { WindowRPCType } from "../shared/types";
 
 const DEV_SERVER_PORT = 3000;
 const DEV_SERVER_URL = `http://localhost:${DEV_SERVER_PORT}`;
@@ -19,10 +20,27 @@ async function getMainViewUrl(): Promise<string> {
 	return "views://mainview/index.html";
 }
 
+const windowRPC = BrowserView.defineRPC<WindowRPCType>({
+	handlers: {
+		requests: {},
+		messages: {
+			closeWindow: () => {
+				process.exit(0);
+			},
+			minimizeWindow: () => {
+				// Handled by BrowserWindow
+			},
+			maximizeWindow: () => {
+				// Handled by BrowserWindow
+			},
+		},
+	},
+});
+
 const url = await getMainViewUrl();
 
 const mainWindow = new BrowserWindow({
-	title: "Tailwind + Vanilla",
+	title: "dawn-term",
 	url,
 	frame: {
 		width: 900,
@@ -30,6 +48,8 @@ const mainWindow = new BrowserWindow({
 		x: 200,
 		y: 200,
 	},
+	titleBarStyle: "hiddenInset",
+	rpc: windowRPC,
 });
 
 console.log("Tailwind Vanilla app started!");
