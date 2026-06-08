@@ -134,3 +134,35 @@
   color: var(--dt-text-secondary);
   font-size: 14px;
 }
+
+.panel-toggle {
+  display: flex;
+  gap: 2px;
+  padding: 0 4px;
+}
+
+.panel-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--dt-text-primary);
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0;
+}
+
+.panel-toggle-btn:hover {
+  background-color: var(--dt-bg-hover);
+}
+
+.panel-toggle-active {
+  opacity: 1;
+}
+
+.panel-toggle-inactive {
+  opacity: 0.4;
+}

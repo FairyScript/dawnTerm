@@ -2,10 +2,19 @@ import { Electroview } from 'electrobun/view'
 import { Minus, Square, X } from 'lucide-react'
 import type { WindowRPCType } from '../../shared/types'
 import { DropdownMenu } from './DropdownMenu'
+import { PanelToggle } from './PanelToggle'
+
+interface PanelItem {
+  id: string
+  icon: React.ReactNode
+  visible: boolean
+}
 
 interface TitleBarProps {
   title: string
   onMenuAction?: (action: string) => void
+  panels?: PanelItem[]
+  onPanelToggle?: (id: string) => void
 }
 
 const menuItems = [
@@ -22,7 +31,7 @@ const rpc = Electroview.defineRPC<WindowRPCType>({
 
 const electrobun = new Electroview({ rpc })
 
-export function TitleBar({ title, onMenuAction }: TitleBarProps) {
+export function TitleBar({ title, onMenuAction, panels, onPanelToggle }: TitleBarProps) {
   const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0
 
   const handleMinimize = () => {
@@ -61,6 +70,11 @@ export function TitleBar({ title, onMenuAction }: TitleBarProps) {
       <div className="titlebar-drag electrobun-webkit-app-region-no-drag">
         <DropdownMenu trigger={title} items={menuItems} onItemClick={handleMenuClick} />
       </div>
+      {panels && onPanelToggle && (
+        <div className="electrobun-webkit-app-region-no-drag">
+          <PanelToggle panels={panels} onToggle={onPanelToggle} />
+        </div>
+      )}
       {!isMac && (
         <div className="titlebar-controls electrobun-webkit-app-region-no-drag">
           <button className="titlebar-button" onClick={handleMinimize}>
