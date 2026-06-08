@@ -1,4 +1,17 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+  --dt-bg-dark: #000c18;
+  --dt-bg-base: #10192c;
+  --dt-bg-light: #1c1c2a;
+  --dt-bg-lighter: #2b2b4a;
+  --dt-bg-hover: rgba(255, 255, 255, 0.1);
+  --dt-text-primary: #ffffff;
+  --dt-text-secondary: rgb(148, 151, 169);
+  --dt-border: #2b2b4a;
+  --dt-accent: rgb(91, 30, 207);
+  --dt-danger: #e81123;
+}
 
 #app {
   @apply w-full h-screen flex flex-col;
@@ -9,10 +22,10 @@
   align-items: center;
   justify-content: space-between;
   height: 32px;
-  background-color: #1a1a2e;
-  color: #e0e0e0;
+  background-color: var(--dt-bg-base);
+  color: var(--dt-text-primary);
   user-select: none;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .titlebar-drag {
@@ -31,6 +44,27 @@
   text-overflow: ellipsis;
 }
 
+.titlebar-title-btn {
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: none;
+  border: none;
+  color: var(--dt-text-primary);
+  cursor: pointer;
+  padding: 0 8px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.titlebar-title-btn:hover {
+  background-color: var(--dt-bg-hover);
+}
+
 .titlebar-controls {
   display: flex;
   flex-shrink: 0;
@@ -44,17 +78,59 @@
   height: 32px;
   border: none;
   background: transparent;
-  color: #e0e0e0;
+  color: var(--dt-text-primary);
   cursor: pointer;
   flex-shrink: 0;
   padding: 0;
 }
 
 .titlebar-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--dt-bg-hover);
 }
 
 .titlebar-button-close:hover {
-  background-color: #e81123;
-  color: white;
+  background-color: var(--dt-danger);
+  color: var(--dt-text-primary);
+}
+
+.dropdown-menu {
+  background-color: var(--dt-bg-light);
+  border: 1px solid var(--dt-border);
+  border-radius: 6px;
+  padding: 4px;
+  min-width: 150px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  z-index: 100;
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--dt-text-primary);
+  background: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.dropdown-item-active {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--dt-text-primary);
+  background-color: var(--dt-bg-hover);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.panel-placeholder {
+  padding: 16px;
+  color: var(--dt-text-secondary);
+  font-size: 14px;
 }

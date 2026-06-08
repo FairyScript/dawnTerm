@@ -4,9 +4,10 @@
 	"type": "module",
 	"description": "A simple terminal application built with Bun",
 	"scripts": {
-		"dev": "concurrently \"electrobun dev --watch\" \"bun devServer.ts\""
+		"dev": "concurrently \"electrobun dev\" \"bun devServer.ts\""
 	},
 	"dependencies": {
+		"@headlessui/react": "^2.2.10",
 		"dockview-react": "^6.6.1",
 		"electrobun": "1.18.1",
 		"lucide-react": "^1.17.0",

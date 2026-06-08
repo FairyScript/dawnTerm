@@ -25,5 +25,6 @@
 ### 代码规范
 
 - 项目引入了 react-compiler（通过 `@zomme/bun-plugin-react-compiler`），注意遵守相关的代码规范
+- 所有新窗口和浮层功能统一用 dockview 实现：对话框 = 动态创建中间悬浮面板，设置页 = 新建 tab，不要用传统 modal/overlay
 
 ### 其他

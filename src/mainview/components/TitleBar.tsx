@@ -1,54 +1,65 @@
-import { Electroview } from "electrobun/view";
-import { Minus, Square, X } from "lucide-react";
-import type { WindowRPCType } from "../../shared/types";
+import { Electroview } from 'electrobun/view'
+import { Minus, Square, X } from 'lucide-react'
+import type { WindowRPCType } from '../../shared/types'
+import { DropdownMenu } from './DropdownMenu'
 
 interface TitleBarProps {
   title: string
+  onMenuAction?: (action: string) => void
 }
+
+const menuItems = [
+  { id: 'settings', label: '设置' },
+  { id: 'about', label: '关于' },
+]
 
 const rpc = Electroview.defineRPC<WindowRPCType>({
   handlers: {
     requests: {},
     messages: {},
   },
-});
+})
 
-const electrobun = new Electroview({ rpc });
+const electrobun = new Electroview({ rpc })
 
-export function TitleBar({ title }: TitleBarProps) {
+export function TitleBar({ title, onMenuAction }: TitleBarProps) {
   const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0
 
   const handleMinimize = () => {
-    electrobun.rpc?.send.minimizeWindow();
+    electrobun.rpc?.send.minimizeWindow()
   }
 
   const handleMaximize = () => {
-    electrobun.rpc?.send.maximizeWindow();
+    electrobun.rpc?.send.maximizeWindow()
   }
 
   const handleClose = () => {
-    electrobun.rpc?.send.closeWindow();
+    electrobun.rpc?.send.closeWindow()
   }
 
   const handleDoubleClick = () => {
-    electrobun.rpc?.send.maximizeWindow();
+    electrobun.rpc?.send.maximizeWindow()
   }
 
   const handleMouseDown = (e: React.MouseEvent) => {
-    electrobun.rpc?.send.startWindowDrag({ 
-      mouseX: e.screenX, 
-      mouseY: e.screenY 
-    });
+    electrobun.rpc?.send.startWindowDrag({
+      mouseX: e.screenX,
+      mouseY: e.screenY,
+    })
+  }
+
+  const handleMenuClick = (id: string) => {
+    onMenuAction?.(id)
   }
 
   return (
-    <div 
-      className="titlebar electrobun-webkit-app-region-drag" 
+    <div
+      className="titlebar electrobun-webkit-app-region-drag"
       onDoubleClick={handleDoubleClick}
       onMouseDown={handleMouseDown}
     >
-      <div className="titlebar-drag">
-        <span className="titlebar-title">{title}</span>
+      <div className="titlebar-drag electrobun-webkit-app-region-no-drag">
+        <DropdownMenu trigger={title} items={menuItems} onItemClick={handleMenuClick} />
       </div>
       {!isMac && (
         <div className="titlebar-controls electrobun-webkit-app-region-no-drag">
