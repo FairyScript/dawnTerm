@@ -13,6 +13,11 @@
   --dt-danger: #e81123;
 }
 
+body {
+  color: var(--dt-text-primary);
+  background-color: var(--dt-bg-dark);
+}
+
 #app {
   @apply w-full h-screen flex flex-col;
 }
