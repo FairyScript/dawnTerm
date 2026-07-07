@@ -4,7 +4,9 @@
 
 ```bash
 bun install          # install dependencies
-bun dev              # start dev: electrobun dev + Vite HMR server on :3000
+bun dev              # interactive dev: Bun.serve + electrobun (Ctrl+C kills both)
+bun dev:check         # agent mode: auto-starts app, exits after 15s
+bunx tsc --noEmit     # type-check
 ```
 
 There are no test, typecheck, or lint scripts in `package.json`. Formatting is handled by `oxfmt`, linting by `oxlint` (run via `bunx`). No test files exist in the project.
@@ -14,6 +16,7 @@ There are no test, typecheck, or lint scripts in `package.json`. Formatting is h
 ```
 src/
   bun/index.ts             # Main process — Electrobun BrowserWindow, RPC handlers
+  bun/terminal.ts          # PTY manager: Bun.Terminal lifecycle (create/write/resize/close)
   shared/types.ts          # WindowRPCType shared between bun ↔ renderer
   mainview/                # Renderer (React 19 app)
     main.tsx               # React entry point (mounts to #app)
@@ -24,12 +27,13 @@ src/
       DropdownMenu.tsx     # @headlessui/react Menu wrapper
       PanelToggle.tsx      # Edge group visibility toggle buttons
       panels/
+        TerminalPanel.tsx  # xterm.js terminal: Fit/WebGL/Unicode11/Ligatures/WebLinks
         SettingsPanel.tsx  # Placeholder panel
         AboutPanel.tsx     # Placeholder panel
     utils/
       LayoutStorage.ts     # dockview layout persistence (debounced, ~/.config/dawnTerm/layout.json)
   scripts/
-    devServer.ts           # Bun dev server serving index.html on :3000
+    dev.ts               # Dev runner: Bun.serve + electrobun spawn with cleanup & --timeout agent mode
 ```
 
 The main process (`src/bun/`) and renderer (`src/mainview/`) communicate via Electrobun's typed RPC. Window control messages flow from TitleBar → `Electroview.rpc.send.*` → `src/bun/index.ts` RPC handlers.

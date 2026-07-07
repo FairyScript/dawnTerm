@@ -18,6 +18,7 @@ interface TitleBarProps {
 }
 
 const menuItems = [
+  { id: 'new-terminal', label: '新建终端' },
   { id: 'settings', label: '设置' },
   { id: 'about', label: '关于' },
 ]
