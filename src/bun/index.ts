@@ -76,7 +76,7 @@ mainWindow = new BrowserWindow({
 		x: 200,
 		y: 200,
 	},
-	titleBarStyle: "hiddenInset",
+	titleBarStyle: process.platform === "darwin" ? "hiddenInset" : "hidden",
 	rpc: windowRPC,
 });
 
