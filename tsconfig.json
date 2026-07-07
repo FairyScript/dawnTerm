@@ -11,8 +11,7 @@
 	},
 	"include": [
 		"src",
-		"bundler.ts",
-		"devServer.ts"
+		"scripts"
 	],
 	"exclude": [
 		"node_modules",

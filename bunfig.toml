@@ -1,5 +1,5 @@
 [serve.static]
-plugins = ["bun-plugin-tailwind", "@zomme/bun-plugin-react-compiler"]
+plugins = ["bun-plugin-tailwind", "./scripts/reactCompiler"]
 env = "BUN_PUBLIC_*"
 
 [plugins.react-compiler]

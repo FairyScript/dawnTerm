@@ -1,4 +1,4 @@
-import html from './src/mainview/index.html';
+import html from '../src/mainview/index.html';
 
 Bun.serve({
   routes: {

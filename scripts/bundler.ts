@@ -1,5 +1,5 @@
 import tailwindPlugin from "bun-plugin-tailwind";
-import reactCompiler from "@zomme/bun-plugin-react-compiler";
+import reactCompiler from "./reactCompiler";
 
 Bun.build({
   entrypoints: ["./src/mainview/index.html"],
@@ -7,5 +7,5 @@ Bun.build({
   plugins: [
     tailwindPlugin,
     reactCompiler
-  ]
+  ],
 })
