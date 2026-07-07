@@ -1,17 +1,3 @@
----
-doc_type: requirement
-slug: layout-persistence
-pitch: 保存面板布局，下次打开自动恢复
-status: current
-last_reviewed: 2026-06-09
-implemented_by:
-  - ARCHITECTURE.md
-tags:
-  - dockview
-  - persistence
-  - layout
----
-
 # 布局持久化
 
 ## 用户故事

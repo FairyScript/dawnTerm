@@ -1,6 +1,5 @@
-# dawn-term 架构总入口
+# dawnTerm 架构总入口
 
-> 状态：已初始化
 > 创建日期：2026-06-08
 > 最后更新：2026-06-09（dockview-layout-persistence feature）
 
